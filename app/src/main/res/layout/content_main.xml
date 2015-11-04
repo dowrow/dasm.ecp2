@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main" tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    tools:context=".MainActivity"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    >
+    android:paddingRight="@dimen/activity_horizontal_margin">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,27 +22,30 @@
         >
 
         <EditText
-            android:hint="Artist"
+            android:hint="@string/etArtistHint"
+            android:id="@+id/etArtist"
+            android:lines="1"
+            android:selectAllOnFocus="true"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
         <Button
             android:text="@string/searchButtonText"
+            android:onClick="searchAlbums"
+            android:enabled="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
 
     <ListView
+        android:padding="0dp"
         android:id="@+id/lvAlbums"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_height="wrap_content">
 
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>

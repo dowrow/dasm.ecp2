@@ -1,57 +1,112 @@
 package es.upm.miw.dasmecp2;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import es.upm.miw.dasmecp2.api.ItemAdapter;
+import es.upm.miw.dasmecp2.api.SpotifyAPI;
+import es.upm.miw.dasmecp2.api.SpotifyAPIService;
+import es.upm.miw.dasmecp2.api.models.Albums;
+import es.upm.miw.dasmecp2.api.models.AlbumsResponse;
+import es.upm.miw.dasmecp2.api.models.Item;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.bar_title);
         setSupportActionBar(toolbar);
-
-        /**
-         * Botón flotante
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-         */
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        return (id == R.id.action_settings) || super.onOptionsItemSelected(item);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public void searchAlbums(View view) {
+        EditText artistEditText = (EditText) findViewById(R.id.etArtist);
+        String artist = artistEditText.getText().toString();
+
+        hideSoftKeyboard(this);
+
+        if (!isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), R.string.noInternet, Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        return super.onOptionsItemSelected(item);
+        SpotifyAPI spotifyAPI = new SpotifyAPI();
+        SpotifyAPIService apiService = spotifyAPI.getAPIService();
+        Call<AlbumsResponse> call_async = apiService.searchAlbums("artist:" + artist);
+
+        // Asíncrona
+        call_async.enqueue(new Callback<AlbumsResponse>() {
+
+            @Override
+            public void onResponse(Response<AlbumsResponse> response, Retrofit retrofit) {
+                AlbumsResponse albumsResponse = response.body();
+                Albums albums = albumsResponse.getAlbums();
+                ArrayList<Item> items = new ArrayList<>(albums.getItems());
+                showAlbums(items);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("Fail", t.toString());
+            }
+        });
+
     }
+
+    public void showAlbums(ArrayList<Item> items) {
+        ItemAdapter adapter = new ItemAdapter(this, items);
+        ListView lvItems = (ListView) findViewById(R.id.lvAlbums);
+        lvItems.setAdapter(adapter);
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
