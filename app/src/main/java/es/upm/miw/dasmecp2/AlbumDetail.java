@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,8 @@ public class AlbumDetail extends AppCompatActivity {
 
         TextView tvSubtitle = (TextView) findViewById(R.id.itemDetailSubtitle);
         tvSubtitle.setText(capitalize(extras.getString("subtitle")));
+
+        Button addToFavoritesButton = (Button) findViewById(R.id.)
     }
 
 }

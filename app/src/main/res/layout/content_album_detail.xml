@@ -22,29 +22,42 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/itemDetailTitle"
-            android:ellipsize="end"
-            android:textSize="20dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        >
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_gravity="top"
+            >
+            <TextView
+                android:id="@+id/itemDetailTitle"
+                android:ellipsize="end"
+                android:textSize="24dp"
+                android:lines="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
 
-        <TextView
-            android:id="@+id/itemDetailSubtitle"
-            android:textSize="15dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            />
+            <TextView
+                android:id="@+id/itemDetailSubtitle"
+                android:textSize="20dp"
+                android:lines="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
 
         <Button
+            android:id="@+id/addToFavouritesButton"
             android:text="@string/favoriteButtonText"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             />
     </LinearLayout>
 
