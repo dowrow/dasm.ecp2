@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import es.upm.miw.dasmecp2.R;
 import es.upm.miw.dasmecp2.api.models.Item;
+import es.upm.miw.dasmecp2.entities.AlbumEntity;
 
 public class ItemAdapter extends ArrayAdapter<Item> {
 
@@ -66,9 +67,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AlbumDetail.class);
-                intent.putExtra("imageURL", item.getImages().get(0).getUrl());
-                intent.putExtra("title", item.getName());
-                intent.putExtra("subtitle", item.getAlbumType());
+                intent.putExtra("albumEntity", new AlbumEntity(item));
                 context.startActivity(intent);
             }
         });

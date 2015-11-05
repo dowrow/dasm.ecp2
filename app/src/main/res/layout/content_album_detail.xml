@@ -53,7 +53,8 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/addToFavouritesButton"
+            android:onClick="addToFavorites"
+            android:id="@+id/addToFavoritesButton"
             android:text="@string/favoriteButtonText"
             android:layout_width="fill_parent"
             android:layout_height="0dp"

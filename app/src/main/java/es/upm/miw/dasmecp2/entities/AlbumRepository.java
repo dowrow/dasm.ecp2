@@ -39,8 +39,8 @@ public class AlbumRepository extends SQLiteOpenHelper {
                 + albumTable.COL_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + albumTable.COL_NAME_NAME + " TEXT, "
                 + albumTable.COL_NAME_ALBUM_TYPE + " TEXT, "
-                + albumTable.COL_NAME_SMALL_IMAGE_URL+ " TEXT"
-                + albumTable.COL_NAME_BIG_IMAGE_URL + " TEXT, "
+                + albumTable.COL_NAME_SMALL_IMAGE_URL+ " TEXT, "
+                + albumTable.COL_NAME_BIG_IMAGE_URL + " TEXT"
                 + ")";
         db.execSQL(sentenciaSQL);
     }

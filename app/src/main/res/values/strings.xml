@@ -8,4 +8,5 @@
     <string name="title_activity_album_detail">AlbumDetail</string>
     <string name="favoriteButtonText">Add to Favorites</string>
     <string name="albumDetailsTitle">Album Details</string>
+    <string name="addedToFavorites">The album was added to favorites</string>
 </resources>

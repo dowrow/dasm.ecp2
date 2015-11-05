@@ -30,7 +30,7 @@ public class AlbumEntity implements Parcelable {
         this(item.getId().hashCode(),
                 item.getName(),
                 item.getAlbumType(),
-                item.getImages().get(item.getImages().size()).getUrl(),
+                item.getImages().get(item.getImages().size() - 1).getUrl(),
                 item.getImages().get(0).getUrl());
     }
 

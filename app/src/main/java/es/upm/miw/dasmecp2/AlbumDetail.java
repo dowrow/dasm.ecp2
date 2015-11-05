@@ -13,12 +13,18 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import es.upm.miw.dasmecp2.entities.AlbumEntity;
+import es.upm.miw.dasmecp2.entities.AlbumRepository;
 
 import static org.apache.commons.lang3.text.WordUtils.capitalize;
 
 public class AlbumDetail extends AppCompatActivity {
+
+    private AlbumEntity albumEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +38,14 @@ public class AlbumDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         final Bundle extras = intent.getExtras();
+        albumEntity = (AlbumEntity) extras.get("albumEntity");
 
         final ImageView imageView = (ImageView) findViewById(R.id.itemDetailImage);
         ViewTreeObserver vto = imageView.getViewTreeObserver();
         vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
                 Picasso.with(getApplicationContext())
-                        .load(extras.getString("imageURL"))
+                        .load(albumEntity.getBigImageURL())
                         .centerCrop()
                         .resize(imageView.getMeasuredWidth(), imageView.getMeasuredHeight())
                         .into(imageView);
@@ -47,12 +54,16 @@ public class AlbumDetail extends AppCompatActivity {
         });
 
         TextView tvTitle = (TextView) findViewById(R.id.itemDetailTitle);
-        tvTitle.setText(extras.getString("title"));
+        tvTitle.setText(albumEntity.getName());
 
         TextView tvSubtitle = (TextView) findViewById(R.id.itemDetailSubtitle);
-        tvSubtitle.setText(capitalize(extras.getString("subtitle")));
-
-        Button addToFavoritesButton = (Button) findViewById(R.id.)
+        tvSubtitle.setText(capitalize(albumEntity.getAlbumType()));
     }
 
+    public void addToFavorites(View view) {
+        AlbumRepository repository = new AlbumRepository(getApplicationContext());
+        repository.add(albumEntity);
+        Toast.makeText(getApplicationContext(), R.string.addedToFavorites, Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }
