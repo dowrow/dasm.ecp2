@@ -2,6 +2,7 @@ package es.upm.miw.dasmecp2;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showAlbums(ArrayList<Item> items) {
-        ItemAdapter adapter = new ItemAdapter(this, items);
+        ItemArrayAdapter adapter = new ItemArrayAdapter(this, items);
         ListView lvItems = (ListView) findViewById(R.id.lvAlbums);
         lvItems.setAdapter(adapter);
     }
@@ -106,4 +107,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void openFavoriteAlbums(MenuItem item) {
+        Intent intent = new Intent(this, FavoriteAlbums.class);
+        startActivity(intent);
+    }
 }

@@ -20,12 +20,12 @@ import es.upm.miw.dasmecp2.R;
 import es.upm.miw.dasmecp2.api.models.Item;
 import es.upm.miw.dasmecp2.entities.AlbumEntity;
 
-public class ItemAdapter extends ArrayAdapter<Item> {
+public class ItemArrayAdapter extends ArrayAdapter<Item> {
 
     private Context context;
     private ArrayList<Item> items;
 
-    public ItemAdapter(Context context, ArrayList<Item> items) {
+    public ItemArrayAdapter(Context context, ArrayList<Item> items) {
         super(context, R.layout.layout_listview_items, items);
         this.items = items;
         this.context = context;

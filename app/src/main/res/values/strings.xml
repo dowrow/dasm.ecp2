@@ -9,4 +9,6 @@
     <string name="favoriteButtonText">Add to Favorites</string>
     <string name="albumDetailsTitle">Album Details</string>
     <string name="addedToFavorites">The album was added to favorites</string>
+    <string name="title_activity_favorite_albums">Favorite Albums</string>
+    <string name="action_favorites">Favorite Albums</string>
 </resources>

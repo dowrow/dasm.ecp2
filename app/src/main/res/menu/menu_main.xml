@@ -4,9 +4,18 @@
     tools:context=".MainActivity">
 
     <item
+        android:onClick="openFavoriteAlbums"
+        android:id="@+id/action_favorites"
+        android:title="@string/action_favorites"
+        android:icon="@android:drawable/star_on"
+        app:showAsAction="always"
+        />
+
+    <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        />
 
 </menu>
