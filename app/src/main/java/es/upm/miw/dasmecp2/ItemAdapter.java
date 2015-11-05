@@ -1,6 +1,7 @@
-package es.upm.miw.dasmecp2.api;
+package es.upm.miw.dasmecp2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             convertView = inflater.inflate(R.layout.layout_listview_items, null);
         }
 
-        Item item = this.items.get(position);
+        final Item item = this.items.get(position);
 
         Log.i("ADAPTER", items.toString());
 
@@ -60,6 +61,17 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             itemSubtitle.setText(WordUtils.capitalize(item.getAlbumType()));
 
         }
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AlbumDetail.class);
+                intent.putExtra("imageURL", item.getImages().get(0).getUrl());
+                intent.putExtra("title", item.getName());
+                intent.putExtra("subtitle", item.getAlbumType());
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

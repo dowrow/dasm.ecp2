@@ -7,4 +7,7 @@
     <string name="noToken">Couldn\'t get Spotify token</string>
     <string name="noInternet">Internet connection was not found</string>
     <string name="etArtistHint">Artist name</string>
+    <string name="title_activity_album_detail">AlbumDetail</string>
+    <string name="favoriteButtonText">Add to Favorites</string>
+    <string name="albumDetailsTitle">Album Details</string>
 </resources>

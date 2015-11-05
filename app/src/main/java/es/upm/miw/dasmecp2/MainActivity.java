@@ -15,10 +15,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
-import es.upm.miw.dasmecp2.api.ItemAdapter;
 import es.upm.miw.dasmecp2.api.SpotifyAPI;
 import es.upm.miw.dasmecp2.api.SpotifyAPIService;
 import es.upm.miw.dasmecp2.api.models.Albums;
@@ -33,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
