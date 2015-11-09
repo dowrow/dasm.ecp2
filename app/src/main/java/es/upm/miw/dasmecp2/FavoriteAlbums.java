@@ -27,7 +27,7 @@ public class FavoriteAlbums extends AppCompatActivity {
 
         AlbumRepository repository = new AlbumRepository(getApplicationContext());
         ArrayList<AlbumEntity> all = repository.getAll();
-        AlbumEntityArrayAdapter adapter = new AlbumEntityArrayAdapter(getApplicationContext(), all);
+        AlbumEntityArrayAdapter adapter = new AlbumEntityArrayAdapter(FavoriteAlbums.this, all);
         ListView lvFavoriteAlbums = (ListView) findViewById(R.id.lvFavoriteAlbums);
         lvFavoriteAlbums.setAdapter(adapter);
     }

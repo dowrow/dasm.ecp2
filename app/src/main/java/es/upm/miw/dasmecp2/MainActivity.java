@@ -17,9 +17,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import es.upm.miw.dasmecp2.api.SpotifyAPI;
 import es.upm.miw.dasmecp2.api.SpotifyAPIService;
+import es.upm.miw.dasmecp2.api.TwitterAPI;
 import es.upm.miw.dasmecp2.api.models.Albums;
 import es.upm.miw.dasmecp2.api.models.AlbumsResponse;
 import es.upm.miw.dasmecp2.api.models.Item;
@@ -27,6 +29,10 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Fail", t.toString());
             }
         });
+
 
     }
 
