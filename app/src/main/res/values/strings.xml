@@ -11,4 +11,8 @@
     <string name="addedToFavorites">The album was added to favorites</string>
     <string name="title_activity_favorite_albums">Favorite Albums</string>
     <string name="action_favorites">Favorite Albums</string>
+    <string name="action_share">Share</string>
+    <string name="action_delete">Delete</string>
+    <string name="favoriteDeleted">The album was removed from favorites</string>
+    <string name="favoriteShared">Album posted to Twitter account @the_best_albums</string>
 </resources>

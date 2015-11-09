@@ -24,7 +24,6 @@
             android:ellipsize="end"
             android:textSize="20dp"
             android:lines="1"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
         <TextView
@@ -34,8 +33,30 @@
             android:layout_weight="1"
             android:textSize="15dp"
             android:lines="1"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            >
+
+            <Button
+                android:id="@+id/actionShare"
+                android:text="@string/action_share"
+                android:drawableStart="@android:drawable/ic_menu_share"
+                android:drawableLeft="@android:drawable/ic_menu_share"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+
+            <ImageButton
+                android:id="@+id/actionDelete"
+                android:src="@android:drawable/ic_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

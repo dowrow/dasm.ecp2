@@ -125,6 +125,12 @@ public class AlbumRepository extends SQLiteOpenHelper {
         return db.delete(albumTable.TABLE_NAME, "1", null);
     }
 
+    public void deleteAlbumEntityByID(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sentenciaSQL = "DELETE FROM " + albumTable.TABLE_NAME + " WHERE " + albumTable.COL_NAME_ID + "=" + id;
+        db.execSQL(sentenciaSQL);
+    }
+
     /**
      * Recupera un futbolista por ID
      * @param id Identificador del futbolista
